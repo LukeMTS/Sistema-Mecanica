@@ -24,5 +24,6 @@ Route::middleware('api')
     ->prefix('carros')
     ->controller(VehicleController::class)
     ->group(function () {
-        Route::post('/cadastrar', 'store');
+        Route::post('/register/vehicles', 'store');
+        Route::get('/delete-vehicle/{id}', 'destroy');
     });

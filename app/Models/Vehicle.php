@@ -18,6 +18,7 @@ class vehicle extends Authenticatable
    * @var array<int, string>
    */
   protected $fillable = [
+    'user_id',
     'model',
     'brand',
     'license_plate',
@@ -26,6 +27,6 @@ class vehicle extends Authenticatable
 
   public function user()
   {
-    return $this->belongsTo(User::class, 'user_id');
+    return $this->belongsTo(User::class, 'user_id', 'id');
   }
 }

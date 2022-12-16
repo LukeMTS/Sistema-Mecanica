@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\vehicle;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class VehicleController extends Controller
 {
+    public function add()
+    {
+        $vehicles = Vehicle::all();
+
+        return view('vehicles.add', compact('vehicles'));
+    }
+
     public function store(Request $request)
     {
         $vehicle = new Vehicle();
@@ -19,5 +25,12 @@ class VehicleController extends Controller
         $vehicle->version       = $request->version;
 
         $vehicle->save();
+    }
+
+    public function destroy($id)
+    {
+        $vehicle = Vehicle::findOrFail($id);
+
+        $vehicle->delete();
     }
 }

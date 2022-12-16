@@ -15,10 +15,10 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
-import ExampleComponent from './components/ExampleComponent.vue';
+import RegisterVehicle from './components/RegisterVehicle.vue';
 //import Lukz from './components/Lukz.vue';
 
-app.component('example-component', ExampleComponent);
+app.component('register-vehicle', RegisterVehicle);
 //app.component('lukz', Lukz);
 
 /**
