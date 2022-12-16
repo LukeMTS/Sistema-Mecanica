@@ -21,6 +21,6 @@
     </div>
 </div> -->
 
-<example-component></example-component>
+<example-component user-id="{{ Auth::user()->id }}" />
 <lukz />
 @endsection
