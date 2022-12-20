@@ -25,4 +25,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/register/vehicles', [VehicleController::class, 'add']);
+    Route::get('/vehicles', [VehicleController::class, 'index']);
+    Route::get('/edit/vehicle/{id}', [VehicleController::class, 'edit']);
 });

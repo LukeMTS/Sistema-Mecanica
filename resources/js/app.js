@@ -15,11 +15,14 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
-import RegisterVehicle from './components/RegisterVehicle.vue';
-//import Lukz from './components/Lukz.vue';
+import AddVehicle from './components/vehicle/AddVehicle.vue';
+import Home from './components/vehicle/Home.vue';
+import Message from './components/vehicle/Message.vue';
+import Edit from './components/vehicle/Edit.vue';
 
-app.component('register-vehicle', RegisterVehicle);
-//app.component('lukz', Lukz);
+app.component('add-vehicle', AddVehicle);
+app.component('Home', Home);
+app.component('Edit', Edit);
 
 /**
  * The following block of code may be used to automatically register your

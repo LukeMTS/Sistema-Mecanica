@@ -1,8 +1,9 @@
 @extends('layouts.app')
+
 @section('title')
-Registro
+Home Veículos
 @endsection
 
 @section('content')
-<add-vehicle user-id="{{ Auth::user()->id }}" />
+<Home />
 @endsection

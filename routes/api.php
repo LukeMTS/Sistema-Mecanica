@@ -21,9 +21,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::middleware('api')
-    ->prefix('carros')
+    ->prefix('cars')
     ->controller(VehicleController::class)
     ->group(function () {
-        Route::post('/register/vehicles', 'store');
-        Route::get('/delete-vehicle/{id}', 'destroy');
+        Route::get('', 'getAll');
+        Route::post('', 'store');
+        Route::delete('{id}', 'destroy');
+        Route::get('{id}', 'getCar');
+        Route::put('{id}', 'update');
+    });
+
+Route::middleware('api')
+    ->prefix('maintenances')
+    ->controller(VehicleController::class)
+    ->group(function () {
+        Route::get('', 'getAll');
     });

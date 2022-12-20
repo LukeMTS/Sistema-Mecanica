@@ -7,11 +7,19 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
+    public function index()
+    {
+        return view('vehicles.home');
+    }
+
+    public function getAll()
+    {
+        return Vehicle::all();
+    }
+
     public function add()
     {
-        $vehicles = Vehicle::all();
-
-        return view('vehicles.add', compact('vehicles'));
+        return view('vehicles.add');
     }
 
     public function store(Request $request)
@@ -32,5 +40,29 @@ class VehicleController extends Controller
         $vehicle = Vehicle::findOrFail($id);
 
         $vehicle->delete();
+    }
+
+    public function edit($id)
+    {
+        return view('vehicles.edit', compact('id'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $vehicle = Vehicle::findOrFail($id);
+
+        $vehicle->model         = $request->model;
+        $vehicle->brand         = $request->brand;
+        $vehicle->license_plate = $request->license_plate;
+        $vehicle->version       = $request->version;
+
+        $vehicle->save();
+    }
+
+    public function getCar($id)
+    {
+        $vehicle = Vehicle::findOrFail($id);
+
+        return $vehicle;
     }
 }

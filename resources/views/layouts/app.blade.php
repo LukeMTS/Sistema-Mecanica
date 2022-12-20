@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -68,8 +68,8 @@
                             </div>
                             @auth
                         </li>
-                        <a id="navbarDropdown" class="nav-link" href="{{ url('/register/vehicles') }}">
-                            Cadastrar Veículo
+                        <a id="navbarDropdown" class="nav-link" href="{{ url('/vehicles') }}">
+                            Veículos
                         </a>
                         </li>
                         <li class="nav-item dropdown">

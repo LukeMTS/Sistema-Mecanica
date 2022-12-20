@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import Message from "../components/Message.vue"
+import Message from "../vehicle/Message.vue"
 
 export default {
   props: ["userId"],
@@ -46,14 +46,13 @@ export default {
     onSubmit(e) {
       e.preventDefault();
 
-      axios.post('http://127.0.0.1:8000/api/carros/cadastrar', {
+      axios.post('http://127.0.0.1:8000/api/cars', {
         model: this.model,
         brand: this.brand,
         license_plate: this.license_plate,
         version: this.version,
         user_id: this.userId,
       })
-
       this.msg = "Veículo cadastrado com sucesso!"
     }
   },

@@ -21,10 +21,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     public function index()
     {
-        $vehicles = Vehicle::all();
 
-        return view('home', compact('vehicles'));
+        return view('home');
     }
 }

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('title')
-Registro
+Edição
 @endsection
 
 @section('content')
-<add-vehicle user-id="{{ Auth::user()->id }}" />
+<Edit car-id="{{ $id }}" />
 @endsection
