@@ -27,7 +27,7 @@ Route::middleware('api')
     ->prefix('cars')
     ->controller(VehicleController::class)
     ->group(function () {
-        Route::get('', 'getAll');
+        Route::get('users/{vehicleId}', 'getAll');
         Route::post('', 'store');
         Route::delete('{id}', 'destroy');
         Route::get('{id}', 'getCar');
@@ -39,7 +39,7 @@ Route::middleware('api')
     ->prefix('maintenances')
     ->controller(MaintenanceController::class)
     ->group(function () {
-        Route::get('', 'getAll');
+        Route::get('users/{userId}', 'getAll');
         Route::post('', 'store');
         Route::delete('{id}', 'destroy');
         Route::get('{id}', 'getMaintenance');

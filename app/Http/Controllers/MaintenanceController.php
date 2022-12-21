@@ -17,9 +17,11 @@ class MaintenanceController extends Controller
         return view('maintenance.add');
     }
 
-    public function getAll()
+    public function getAll($userId)
     {
-        return Maintenance::all();
+        return Maintenance::whereHas('vehicle', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->get();
     }
 
     public function edit($id)

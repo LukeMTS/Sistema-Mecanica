@@ -12,9 +12,9 @@ class VehicleController extends Controller
         return view('vehicles.home');
     }
 
-    public function getAll()
+    public function getAll($userId)
     {
-        return Vehicle::all();
+        return Vehicle::where('user_id', $userId)->get();
     }
 
     public function add()

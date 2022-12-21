@@ -15,27 +15,26 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
-import AddVehicle from './components/vehicle/AddVehicle.vue';
-import Home from './components/vehicle/Home.vue';
-import Message from './components/vehicle/Message.vue';
-import Edit from './components/vehicle/Edit.vue';
-
-import Index from './components/maintenance/Index.vue';
-import EditMaintenance from './components/maintenance/Edit.vue';
+//Vehicle
+import HomeVehicle from './components/vehicle/Home.vue';
+import AddVehicle from './components/vehicle/Add.vue';
+import EditVehicle from './components/vehicle/Edit.vue';
+//Maintenance
+import HomeMaintenance from './components/maintenance/Home.vue';
 import AddMaintenance from './components/maintenance/Add.vue';
+import EditMaintenance from './components/maintenance/Edit.vue';
+//Dashboard
+import Dashboard from './components/Dashboard.vue'
 
-import HomeMain from './components/Home.vue'
-
-
+app.component('home-vehicle', HomeVehicle);
 app.component('add-vehicle', AddVehicle);
-app.component('home-vehicle', Home);
-app.component('edit-vehicle', Edit);
+app.component('edit-vehicle', EditVehicle);
 
-app.component('Index', Index)
-app.component('edit-maintenance', EditMaintenance)
+app.component('home-maintenance', HomeMaintenance)
 app.component('add-maintenance', AddMaintenance)
+app.component('edit-maintenance', EditMaintenance)
 
-app.component('home-main', HomeMain)
+app.component('dashboard', Dashboard)
 
 /**
  * The following block of code may be used to automatically register your

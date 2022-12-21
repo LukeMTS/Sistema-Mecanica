@@ -5,5 +5,5 @@ Home
 @endsection
 
 @section('content')
-<home-main />
+<dashboard />
 @endsection

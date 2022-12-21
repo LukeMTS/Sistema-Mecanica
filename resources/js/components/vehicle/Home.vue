@@ -30,6 +30,7 @@
 
 <script>
 export default {
+  props: ["userId"],
   data() {
     return {
       cars: [],
@@ -40,7 +41,7 @@ export default {
   },
   methods: {
     getVehicules() {
-      axios.get('http://127.0.0.1:8000/api/cars').then((result) => {
+      axios.get(`http://127.0.0.1:8000/api/cars/users/${this.userId}`).then((result) => {
         this.cars = result.data;
       })
     },

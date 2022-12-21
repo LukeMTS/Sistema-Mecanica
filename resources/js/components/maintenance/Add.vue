@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import Message from "../vehicle/Message.vue"
+import Message from "../Message.vue"
 
 export default {
   props: ["userId"],

@@ -5,5 +5,5 @@ Home Veículos
 @endsection
 
 @section('content')
-<home-vehicle />
+<home-vehicle user-id="{{ Auth::user()->id }}" />
 @endsection
