@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Maintenance;
 use App\Models\Vehicle;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -24,7 +15,16 @@ class HomeController extends Controller
 
     public function index()
     {
-
         return view('home');
+    }
+
+    public function getNextMaintenances()
+    {
+        $maintenances = Maintenance::with('vehicle')
+            ->selectRaw("*, DATEDIFF(deadline, CURDATE()) days")
+            ->whereRaw('DATEDIFF(deadline, CURDATE()) <= 7')
+            ->get();
+
+        return $maintenances;
     }
 }

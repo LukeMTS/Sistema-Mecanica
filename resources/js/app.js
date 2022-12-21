@@ -20,9 +20,22 @@ import Home from './components/vehicle/Home.vue';
 import Message from './components/vehicle/Message.vue';
 import Edit from './components/vehicle/Edit.vue';
 
+import Index from './components/maintenance/Index.vue';
+import EditMaintenance from './components/maintenance/Edit.vue';
+import AddMaintenance from './components/maintenance/Add.vue';
+
+import HomeMain from './components/Home.vue'
+
+
 app.component('add-vehicle', AddVehicle);
-app.component('Home', Home);
-app.component('Edit', Edit);
+app.component('home-vehicle', Home);
+app.component('edit-vehicle', Edit);
+
+app.component('Index', Index)
+app.component('edit-maintenance', EditMaintenance)
+app.component('add-maintenance', AddMaintenance)
+
+app.component('home-main', HomeMain)
 
 /**
  * The following block of code may be used to automatically register your

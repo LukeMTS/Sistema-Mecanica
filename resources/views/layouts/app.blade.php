@@ -72,11 +72,9 @@
                             Veículos
                         </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Cadastrar Manutenção
-                            </a>
-                        </li>
+                        <a id="navbarDropdown" class="nav-link" href="{{ url('/maintenance') }}">
+                            Manutenções
+                        </a>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link" href="{{ url('/home') }}" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Home

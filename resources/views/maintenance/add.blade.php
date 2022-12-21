@@ -1,9 +1,8 @@
 @extends('layouts.app')
-
 @section('title')
-Home
+Registro
 @endsection
 
 @section('content')
-<home-main />
+<add-maintenance user-id="{{ Auth::user()->id }}" />
 @endsection

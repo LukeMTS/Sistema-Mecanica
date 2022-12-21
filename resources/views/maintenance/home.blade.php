@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('title')
-Home
+Manutenções
 @endsection
 
 @section('content')
-<home-main />
+<Index />
 @endsection

@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\VehicleController;
+use App\Models\Maintenance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,11 +32,23 @@ Route::middleware('api')
         Route::delete('{id}', 'destroy');
         Route::get('{id}', 'getCar');
         Route::put('{id}', 'update');
+        Route::get('user/{userId}', 'getCarsByUserId');
     });
 
 Route::middleware('api')
     ->prefix('maintenances')
-    ->controller(VehicleController::class)
+    ->controller(MaintenanceController::class)
     ->group(function () {
         Route::get('', 'getAll');
+        Route::post('', 'store');
+        Route::delete('{id}', 'destroy');
+        Route::get('{id}', 'getMaintenance');
+        Route::put('{id}', 'update');
+    });
+
+Route::middleware('api')
+    ->prefix('home')
+    ->controller(HomeController::class)
+    ->group(function () {
+        Route::get('next-maintenances', 'getNextMaintenances');
     });

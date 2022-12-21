@@ -5,5 +5,5 @@ Home Veículos
 @endsection
 
 @section('content')
-<Home />
+<home-vehicle />
 @endsection

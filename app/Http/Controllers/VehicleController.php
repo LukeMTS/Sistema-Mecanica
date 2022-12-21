@@ -65,4 +65,11 @@ class VehicleController extends Controller
 
         return $vehicle;
     }
+
+    public function getCarsByUserId($id)
+    {
+        $vehicles = Vehicle::where('user_id', $id)->get();
+
+        return $vehicles;
+    }
 }

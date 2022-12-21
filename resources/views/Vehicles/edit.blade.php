@@ -4,5 +4,5 @@ Edição
 @endsection
 
 @section('content')
-<Edit car-id="{{ $id }}" />
+<edit-vehicle car-id="{{ $id }}" />
 @endsection

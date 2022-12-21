@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +29,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/register/vehicles', [VehicleController::class, 'add']);
     Route::get('/vehicles', [VehicleController::class, 'index']);
     Route::get('/edit/vehicle/{id}', [VehicleController::class, 'edit']);
+
+    Route::get('/register/maintenance', [MaintenanceController::class, 'add']);
+    Route::get('/maintenance', [MaintenanceController::class, 'index']);
+    Route::get('/edit/maintenance/{id}', [MaintenanceController::class, 'edit']);
+
+    Route::get('/home', [HomeController::class, 'index']);
 });
