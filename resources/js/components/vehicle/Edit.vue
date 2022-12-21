@@ -4,20 +4,20 @@
     <div>
       <form id="edit-car" @submit="onSubmit">
         <div class="input-container">
-          <label for="title">Modelo do carro:</label>
+          <label for="title">Modelo:</label>
           <input type="text" name="model" id="model" v-model="model" placeholder="Digite o modelo do seu carro:">
         </div>
         <div class="input-container">
-          <label for="title">Marca do carro:</label>
+          <label for="title">Marca:</label>
           <input type="text" name="brand" id="brand" v-model="brand" placeholder="Digite a marca do seu carro:">
         </div>
         <div class="input-container">
-          <label for="title">Placa do carro:</label>
+          <label for="title">Placa:</label>
           <input type="text" name="license_plate" id="license_plate" v-model="license_plate"
             placeholder="Digite a placa do seu carro:">
         </div>
         <div class="input-container">
-          <label for="nome">Versão do carro:</label>
+          <label for="nome">Versão:</label>
           <input type="text" name="version" id="version" v-model="version" placeholder="Digite a versão do seu carro:">
         </div>
         <div class="input-container">
