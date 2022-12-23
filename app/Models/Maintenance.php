@@ -11,6 +11,8 @@ class Maintenance extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'maintenances';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,5 +28,10 @@ class Maintenance extends Model
     public function vehicle()
     {
         return $this->belongsTo(Vehicle::class, 'id_vehicle', 'id');
+    }
+
+    public function status()
+    {
+        return $this->hasMany(Status::class, 'id', 'status_id');
     }
 }

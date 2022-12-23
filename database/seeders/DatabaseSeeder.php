@@ -62,5 +62,22 @@ class DatabaseSeeder extends Seeder
                 ],
             );
         }
+        DB::table('status')->insert(
+            [
+                'status' =>  'Pendente',
+            ],
+        );
+
+        DB::table('status')->insert(
+            [
+                'status' =>  'Realizado',
+            ],
+        );
+
+        DB::table('status')->insert(
+            [
+                'status' =>  'Cancelado',
+            ],
+        );
     }
 }

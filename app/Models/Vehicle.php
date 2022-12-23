@@ -12,6 +12,8 @@ class vehicle extends Authenticatable
 {
   use HasApiTokens, HasFactory, Notifiable;
 
+  protected $table = 'vehicles';
+
   /**
    * The attributes that are mass assignable.
    *
