@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Vehicle\CreateVehicleRequest;
+use App\Http\Requests\Vehicle\UpdateVehicleRequest;
 use App\Models\Vehicle;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 class VehicleController extends Controller
 {
@@ -12,9 +15,11 @@ class VehicleController extends Controller
         return view('vehicles.home');
     }
 
-    public function getAll($userId)
+    public function getAll($userId): JsonResponse
     {
-        return Vehicle::where('user_id', $userId)->get();
+        $vehicles = Vehicle::where('user_id', $userId)->get();
+
+        return response()->json(['data' => $vehicles]);
     }
 
     public function add()
@@ -22,7 +27,7 @@ class VehicleController extends Controller
         return view('vehicles.add');
     }
 
-    public function store(Request $request)
+    public function store(CreateVehicleRequest $request): Response
     {
         $vehicle = new Vehicle();
 
@@ -33,13 +38,17 @@ class VehicleController extends Controller
         $vehicle->version       = $request->version;
 
         $vehicle->save();
+
+        return response()->noContent();
     }
 
-    public function destroy($id)
+    public function destroy($id): Response
     {
         $vehicle = Vehicle::findOrFail($id);
 
         $vehicle->delete();
+
+        return response()->noContent();
     }
 
     public function edit($id)
@@ -47,7 +56,7 @@ class VehicleController extends Controller
         return view('vehicles.edit', compact('id'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateVehicleRequest $request, $id): Response
     {
         $vehicle = Vehicle::findOrFail($id);
 
@@ -57,19 +66,21 @@ class VehicleController extends Controller
         $vehicle->version       = $request->version;
 
         $vehicle->save();
+
+        return response()->noContent();
     }
 
-    public function getCar($id)
+    public function getCar($id): JsonResponse
     {
         $vehicle = Vehicle::findOrFail($id);
 
-        return $vehicle;
+        return response()->json(['data' => $vehicle]);
     }
 
-    public function getCarsByUserId($id)
+    public function getCarsByUserId($id): JsonResponse
     {
         $vehicles = Vehicle::where('user_id', $id)->get();
 
-        return $vehicles;
+        return response()->json(['data' => $vehicles]);
     }
 }

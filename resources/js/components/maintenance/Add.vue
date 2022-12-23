@@ -5,16 +5,12 @@
       <form id="register-maintenance" @submit="onSubmit">
         <div class="input-container">
           <label for="text">Descrição:</label>
-          <input type="text" name="description" id="description" v-model="description"
+          <input type="text" name="description" id="description" required v-model="description"
             placeholder="Digite o motivo da manutenção:">
         </div>
         <div class="input-container">
-          <label for="title">Razão:</label>
-          <input type="text" name="reason" id="reason" v-model="reason" placeholder="Digite a razão da manutenção:">
-        </div>
-        <div class="input-container">
           <label for="date">Data da manutenção:</label>
-          <input type="date" name="deadline" id="deadline" v-model="deadline"
+          <input type="date" name="deadline" id="deadline" required v-model="deadline"
             placeholder="Digite a data que ocorrerá a manutenção">
         </div>
         <div class="input-container">
@@ -60,8 +56,8 @@ export default {
       this.msg = "Manutenção cadastrada com sucesso!"
     },
     getCarsByUser() {
-      axios.get(`http://127.0.0.1:8000/api/cars/user/${this.userId}`).then((result) => {
-        this.cars = result.data
+      axios.get(`http://127.0.0.1:8000/api/cars/user/${this.userId}`).then(({ data }) => {
+        this.cars = data.data
       })
     }
   },

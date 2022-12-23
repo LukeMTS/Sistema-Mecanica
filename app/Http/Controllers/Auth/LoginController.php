@@ -45,4 +45,19 @@ class LoginController extends Controller
         request()->merge([$this->username => $loginValue]);
         return property_exists($this, 'username') ? $this->username : 'email';
     }
+
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->only('email', 'password');
+    //     if (!auth()->attempt($credentials))
+    //         abort(401, 'Credenciais Inválidas');
+
+    //     $token = auth()->user()->createToken('auth_token');
+
+    //     return response()->json([
+    //         'data' => [
+    //             'token' => $token->plainTextToken
+    //         ]
+    //     ]);
+    // }
 }

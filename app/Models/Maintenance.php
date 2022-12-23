@@ -19,7 +19,6 @@ class Maintenance extends Model
     protected $fillable = [
         'id_vehicle',
         'description',
-        'reason',
         'deadline',
         'version',
     ];

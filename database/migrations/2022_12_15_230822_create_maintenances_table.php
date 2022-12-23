@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_vehicle')->constrained('vehicles');
             $table->text('description');
-            $table->string('reason', 99);
             $table->dateTime('deadline')->nullable();
             $table->timestamps();
         });

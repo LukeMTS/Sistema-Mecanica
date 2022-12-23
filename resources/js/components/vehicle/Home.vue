@@ -43,12 +43,12 @@ export default {
   },
   methods: {
     getVehicules() {
-      axios.get(`http://127.0.0.1:8000/api/cars/users/${this.userId}`).then((result) => {
-        this.cars = result.data;
+      axios.get(`http://127.0.0.1:8000/api/cars/users/${this.userId}`).then(({ data }) => {
+        this.cars = data.data;
       })
     },
     deleteCar(id) {
-      axios.delete(`http://127.0.0.1:8000/api/cars/${id}`).then((result) => {
+      axios.delete(`http://127.0.0.1:8000/api/cars/${id}`).then(({ data }) => {
         this.cars = this.cars.filter(function (item) {
           return item.id !== id;
         });

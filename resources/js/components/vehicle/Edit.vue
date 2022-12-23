@@ -5,20 +5,23 @@
       <form id="edit-car" @submit="onSubmit">
         <div class="input-container">
           <label for="title">Modelo:</label>
-          <input type="text" name="model" id="model" v-model="model" placeholder="Digite o modelo do seu carro:">
+          <input type="text" name="model" id="model" v-model="model" required
+            placeholder="Digite o modelo do seu carro:">
         </div>
         <div class="input-container">
           <label for="title">Marca:</label>
-          <input type="text" name="brand" id="brand" v-model="brand" placeholder="Digite a marca do seu carro:">
+          <input type="text" name="brand" id="brand" v-model="brand" required
+            placeholder="Digite a marca do seu carro:">
         </div>
         <div class="input-container">
           <label for="title">Placa:</label>
-          <input type="text" name="license_plate" id="license_plate" v-model="license_plate"
+          <input type="text" name="license_plate" id="license_plate" required v-model="license_plate"
             placeholder="Digite a placa do seu carro:">
         </div>
         <div class="input-container">
           <label for="nome">Versão:</label>
-          <input type="text" name="version" id="version" v-model="version" placeholder="Digite a versão do seu carro:">
+          <input type="text" name="version" id="version" v-model="version" required
+            placeholder="Digite a versão do seu carro:">
         </div>
         <div class="input-container">
           <input type="submit" class="submit-btn" value="Atualizar informações" />
@@ -35,11 +38,11 @@ export default {
   name: 'Edit',
   data() {
     return {
-      model: "",
-      brand: "",
-      license_plate: "",
-      version: "",
-      msg: "",
+      model: null,
+      brand: null,
+      license_plate: null,
+      version: null,
+      msg: null,
     }
   },
   props: ['carId'],
@@ -48,11 +51,11 @@ export default {
   },
   methods: {
     getCar() {
-      axios.get(`http://127.0.0.1:8000/api/cars/${this.carId}`).then((result) => {
-        this.model = result.data.model;
-        this.brand = result.data.brand;
-        this.license_plate = result.data.license_plate;
-        this.version = result.data.version;
+      axios.get(`http://127.0.0.1:8000/api/cars/${this.carId}`).then(({ data }) => {
+        this.model = data.data.model;
+        this.brand = data.data.brand;
+        this.license_plate = data.data.license_plate;
+        this.version = data.data.version;
       })
     },
     onSubmit(e) {

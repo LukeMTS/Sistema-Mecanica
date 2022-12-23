@@ -5,16 +5,12 @@
       <form id="edit-maintenance" @submit="onSubmit">
         <div class="input-container">
           <label for="text">Descrição:</label>
-          <input type="text" name="description" id="description" v-model="description"
+          <input type="text" name="description" id="description" required v-model="description"
             placeholder="Digite o motivo da manutenção:">
         </div>
         <div class="input-container">
-          <label for="title">Razão:</label>
-          <input type="text" name="reason" id="reason" v-model="reason" placeholder="Digite a razão da manutenção:">
-        </div>
-        <div class="input-container">
           <label for="date">Data da manutenção:</label>
-          <input type="date" name="deadline" id="deadline" v-model="deadline"
+          <input type="date" name="deadline" id="deadline" required v-model="deadline"
             placeholder="Digite a data que ocorrerá a manutenção">
         </div>
         <div class="input-container">
@@ -39,7 +35,6 @@ export default {
   data() {
     return {
       description: null,
-      reason: null,
       deadline: null,
       msg: null,
       cars: [],
@@ -54,26 +49,24 @@ export default {
   },
   methods: {
     getMaintenance() {
-      axios.get(`http://127.0.0.1:8000/api/maintenances/${this.maintenanceId}`).then((result) => {
-        this.description = result.data.description;
-        this.reason = result.data.reason;
-        this.deadline = result.data.deadline.substring(0, 10);
-        this.car_id = result.data.id_vehicle;
+      axios.get(`http://127.0.0.1:8000/api/maintenances/${this.maintenanceId}`).then(({ data }) => {
+        this.description = data.data.description;
+        this.deadline = data.data.deadline.substring(0, 10);
+        this.car_id = data.data.id_vehicle;
       })
     },
     onSubmit(e) {
       e.preventDefault()
       axios.put(`http://127.0.0.1:8000/api/maintenances/${this.maintenanceId}`, {
         description: this.description,
-        reason: this.reason,
         deadline: this.deadline,
         id_vehicle: this.car_id,
       })
       this.msg = "Informações atualizadas!"
     },
     getCarsByUser() {
-      axios.get(`http://127.0.0.1:8000/api/cars/user/${this.userId}`).then((result) => {
-        this.cars = result.data
+      axios.get(`http://127.0.0.1:8000/api/cars/user/${this.userId}`).then(({ data }) => {
+        this.cars = data.data
       })
     }
   },

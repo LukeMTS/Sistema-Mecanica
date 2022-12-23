@@ -5,20 +5,23 @@
       <form id="register-car" @submit="onSubmit">
         <div class="input-container">
           <label for="title">Modelo:</label>
-          <input type="text" name="model" id="model" v-model="model" placeholder="Digite o modelo do seu carro:">
+          <input type="text" name="model" id="model" v-model="model" required
+            placeholder="Digite o modelo do seu carro:">
         </div>
         <div class="input-container">
           <label for="title">Marca:</label>
-          <input type="text" name="brand" id="brand" v-model="brand" placeholder="Digite a marca do seu carro:">
+          <input type="text" name="brand" id="brand" v-model="brand" required
+            placeholder="Digite a marca do seu carro:">
         </div>
         <div class="input-container">
           <label for="title">Placa:</label>
-          <input type="text" name="license_plate" id="license_plate" v-model="license_plate"
+          <input type="text" name="license_plate" id="license_plate" v-model="license_plate" required
             placeholder="Digite a placa do seu carro:">
         </div>
         <div class="input-container">
           <label for="nome">Versão:</label>
-          <input type="text" name="version" id="version" v-model="version" placeholder="Digite a versão do seu carro:">
+          <input type="text" name="version" id="version" v-model="version" required
+            placeholder="Digite a versão do seu carro:">
         </div>
         <div class="input-container">
           <input type="submit" class="submit-btn" value="Registrar meu carro" />

@@ -72,4 +72,18 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    // public function register(Request $request, User $user)
+    // {
+    //     $userData = $request->only('name', 'email', 'username', 'password');
+    //     $userData['password'] = bcrypt($userData['password']);
+    //     if (!$user->create($userData))
+    //         abort(500, "Error ao tentar criar um novo usuário");
+
+    //     return response()->json([
+    //         'data' => [
+    //             'user' => $user
+    //         ]
+    //     ]);
+    // }
 }

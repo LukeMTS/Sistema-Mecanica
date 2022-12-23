@@ -6,7 +6,6 @@
         <thead>
           <tr>
             <th>Descrição</th>
-            <th>Razão</th>
             <th>Data da manutenção</th>
             <th class="text-center">Ações</th>
           </tr>
@@ -14,7 +13,6 @@
         <tbody>
           <tr v-for="maintenance in maintenances" :key="maintenance.id">
             <td>{{ maintenance.description }}</td>
-            <td>{{ maintenance.reason }}</td>
             <td>{{ formatDate(maintenance.deadline.substring(0, 10)) }}</td>
             <td class="text-center justify-content-center d-flex">
               <button class="btn btn-danger" @click="deleteMaintenance(maintenance.id)">Excluir</button>
@@ -40,12 +38,12 @@ export default {
   },
   methods: {
     getMaintenance() {
-      axios.get(`http://127.0.0.1:8000/api/maintenances/users/${this.userId}`).then((result) => {
-        this.maintenances = result.data;
+      axios.get(`http://127.0.0.1:8000/api/maintenances/users/${this.userId}`).then(({ data }) => {
+        this.maintenances = data.data;
       })
     },
     deleteMaintenance(id) {
-      axios.delete(`http://127.0.0.1:8000/api/maintenances/${id}`).then((result) => {
+      axios.delete(`http://127.0.0.1:8000/api/maintenances/${id}`).then(({ data }) => {
         this.maintenances = this.maintenances.filter(function (item) {
           return item.id !== id;
         });
