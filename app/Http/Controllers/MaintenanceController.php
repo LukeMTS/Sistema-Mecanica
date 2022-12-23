@@ -48,7 +48,7 @@ class MaintenanceController extends Controller
         $maintenance->description = $request->description;
         $maintenance->deadline = $request->deadline;
         $maintenance->id_vehicle = $request->id_vehicle;
-        $maintenance->status_id = $request->status_id == '1';
+        $maintenance->status_id = 1;
 
         $maintenance->save();
 

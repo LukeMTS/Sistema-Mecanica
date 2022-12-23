@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\User;
-use App\Models\vehicle;
+use App\Models\Vehicle;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -53,15 +53,6 @@ class DatabaseSeeder extends Seeder
             'Motor Desliga Sozinho',
         ];
 
-        for ($i = 0; $i < 8; $i++) {
-            DB::table('maintenances')->insert(
-                [
-                    'id_vehicle' => Vehicle::find(rand(1, 10))->id,
-                    'description' => $descriptions[rand(0, sizeof($descriptions) - 1)],
-                    'deadline' =>  Carbon::now()->addDays(rand(1, 15)),
-                ],
-            );
-        }
         DB::table('status')->insert(
             [
                 'status' =>  'Pendente',
@@ -79,5 +70,16 @@ class DatabaseSeeder extends Seeder
                 'status' =>  'Cancelado',
             ],
         );
+
+        for ($i = 0; $i < 8; $i++) {
+            DB::table('maintenances')->insert(
+                [
+                    'id_vehicle' => Vehicle::find(rand(1, 10))->id,
+                    'description' => $descriptions[rand(0, sizeof($descriptions) - 1)],
+                    'status_id' => rand(1, 3),
+                    'deadline' =>  Carbon::now()->addDays(rand(1, 15)),
+                ],
+            );
+        }
     }
 }

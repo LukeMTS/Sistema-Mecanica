@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('status_id')->constrained('status');
             $table->text('description');
             $table->dateTime('deadline')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

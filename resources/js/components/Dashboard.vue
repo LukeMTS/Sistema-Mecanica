@@ -12,9 +12,10 @@
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive">
-                <table class="table">
+                <table class="table align-middle table table-hover">
                   <thead>
                     <tr>
+                      <th scope="col">#</th>
                       <th>Carro</th>
                       <th>Placa</th>
                       <th>Versão</th>
@@ -25,6 +26,7 @@
                   </thead>
                   <tbody>
                     <tr v-for="maintenance in maintenances" :key="maintenance.id">
+                      <th>{{ maintenance.id }}</th>
                       <td>
                         {{ maintenance.vehicle.model }}
                         ({{ maintenance.vehicle.brand }})

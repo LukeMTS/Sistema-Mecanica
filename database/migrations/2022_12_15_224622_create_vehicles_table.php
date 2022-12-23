@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('model', 100);
             $table->string('brand', 100);
             $table->string('license_plate', 7);
-            $table->decimal('version', 4, 2);
+            $table->decimal('version', 4, 1);
             $table->timestamps();
             $table->softDeletes();
         });

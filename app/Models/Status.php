@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Status extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'status';
 
