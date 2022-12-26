@@ -4,5 +4,5 @@ Edição de Manutenção
 @endsection
 
 @section('content')
-<edit-maintenance maintenance-id="{{ $id }}" user-id="{{ Auth::user()->id }}" />
+<edit-maintenance maintenance-id="{{ $id }}" />
 @endsection

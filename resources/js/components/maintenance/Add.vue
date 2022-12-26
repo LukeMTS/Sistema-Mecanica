@@ -1,16 +1,20 @@
 <template>
   <div>
-    <Message :msg="msg" v-show="msg" />
+    <Message :msg="msg" :error="error" v-show="msg" />
     <div>
-      <form id="register-maintenance" @submit="onSubmit">
+      <div v-if="loading" class="d-flex justify-content-center">
+        <div class="big spinner-border text-info" role="status">
+        </div>
+      </div>
+      <form v-else id="register-maintenance" @submit="onSubmit">
         <div class="input-container">
           <label for="text">Descrição:</label>
-          <input type="text" name="description" id="description" required v-model="description"
+          <input type="text" name="description" id="description" v-model="description"
             placeholder="Digite o motivo da manutenção:">
         </div>
         <div class="input-container">
           <label for="date">Data da manutenção:</label>
-          <input type="date" name="deadline" id="deadline" required v-model="deadline"
+          <input type="date" name="deadline" id="deadline" required v-model="deadline" :min="todayDate"
             placeholder="Digite a data que ocorrerá a manutenção">
         </div>
         <div class="input-container">
@@ -21,7 +25,10 @@
         </div>
 
         <div class="input-container">
-          <input type="submit" class="submit-btn" value="Cadastrar Manutenção" />
+          <button type="submit" :disabled="loadingUpdate" class="submit-btn w-100">
+            <span v-if="loadingUpdate" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Cadastrar Manutenção
+          </button>
         </div>
       </form>
     </div>
@@ -32,34 +39,55 @@
 import Message from "../Message.vue"
 
 export default {
-  props: ["userId"],
   data() {
     return {
+      api_url: import.meta.env.VITE_APP_API_URL,
+      loading: true,
+      loadingUpdate: false,
       description: null,
       reason: null,
       deadline: null,
       car_id: null,
       msg: null,
+      error: false,
       cars: [],
+    }
+  },
+  computed: {
+    todayDate() {
+      const date = new Date();
+
+      const year = date.toLocaleString("default", { year: "numeric" });
+      const month = date.toLocaleString("default", { month: "2-digit" });
+      const day = date.toLocaleString("default", { day: "2-digit" });
+
+      return year + "-" + month + "-" + day;
     }
   },
   methods: {
     onSubmit(e) {
       e.preventDefault();
+      this.loadingUpdate = true;
 
-      axios.post('http://127.0.0.1:8000/api/maintenances', {
+      axios.post(`${this.api_url}/maintenances`, {
         description: this.description,
         reason: this.reason,
         deadline: this.deadline,
         id_vehicle: this.car_id,
-      })
-      this.msg = "Manutenção cadastrada com sucesso!"
+      }).then(() => window.location.href = '/maintenances')
+        .catch(({ response }) => {
+          this.msg = response.data.message;
+          this.error = true;
+        })
+        .finally(() => this.loadingUpdate = false)
     },
     getCarsByUser() {
-      axios.get(`http://127.0.0.1:8000/api/cars/user/${this.userId}`).then(({ data }) => {
+      this.loading = true;
+
+      axios.get(`${this.api_url}/cars`).then(({ data }) => {
         this.cars = data.data
-      })
-    }
+      }).finally(() => this.loading = false)
+    },
   },
   mounted() {
     this.getCarsByUser()
@@ -112,5 +140,10 @@ select {
 .submit-btn:hover {
   background-color: transparent;
   color: #222;
+}
+
+.big.spinner-border {
+  width: 4rem;
+  height: 4rem;
 }
 </style>

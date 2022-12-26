@@ -25,8 +25,18 @@ class UpdateMaintenanceRequest extends FormRequest
   public function rules()
   {
     return [
+      'id_vehicle' => 'required',
       'description' => 'required|max:65000',
       'deadline' => 'required|date_format:Y-m-d',
+    ];
+  }
+
+  public function messages()
+  {
+    return [
+      'description.required' => 'É necessário uma descrição do problema',
+      'deadline.required' => 'É necessário uma data para manutenção',
+      'id_vehicle.required' => 'É necessário selecionar um carro',
     ];
   }
 }

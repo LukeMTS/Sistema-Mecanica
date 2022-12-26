@@ -44,6 +44,10 @@ class DatabaseSeeder extends Seeder
             );
         }
 
+        DB::table('status')->insert(['status' =>  'Pendente']);
+        DB::table('status')->insert(['status' =>  'Realizado']);
+        DB::table('status')->insert(['status' =>  'Cancelado']);
+
         $descriptions = [
             'Barulho no motor',
             'Gato Preso no Escapamento',
@@ -52,24 +56,6 @@ class DatabaseSeeder extends Seeder
             'Manutenção de Rotina',
             'Motor Desliga Sozinho',
         ];
-
-        DB::table('status')->insert(
-            [
-                'status' =>  'Pendente',
-            ],
-        );
-
-        DB::table('status')->insert(
-            [
-                'status' =>  'Realizado',
-            ],
-        );
-
-        DB::table('status')->insert(
-            [
-                'status' =>  'Cancelado',
-            ],
-        );
 
         for ($i = 0; $i < 8; $i++) {
             DB::table('maintenances')->insert(

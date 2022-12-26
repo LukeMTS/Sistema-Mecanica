@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Message :msg="msg" v-show="msg" />
+    <Message :msg="msg" :error="error" v-show="msg" />
     <div>
       <form id="register-car" @submit="onSubmit">
         <div class="input-container">
@@ -24,7 +24,10 @@
             placeholder="Digite a versão do seu carro:">
         </div>
         <div class="input-container">
-          <input type="submit" class="submit-btn" value="Registrar meu carro" />
+          <button type="submit" :disabled="loadingUpdate" class="submit-btn w-100">
+            <span v-if="loadingUpdate" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Registrar meu carro
+          </button>
         </div>
       </form>
     </div>
@@ -35,28 +38,34 @@
 import Message from "../Message.vue"
 
 export default {
-  props: ["userId"],
   data() {
     return {
+      api_url: import.meta.env.VITE_APP_API_URL,
+      loadingUpdate: false,
       model: null,
       brand: null,
       license_plate: null,
       version: null,
       msg: null,
+      error: false,
     }
   },
   methods: {
     onSubmit(e) {
       e.preventDefault();
+      this.loadingUpdate = true;
 
-      axios.post('http://127.0.0.1:8000/api/cars', {
+      axios.post(`${this.api_url}/cars`, {
         model: this.model,
         brand: this.brand,
         license_plate: this.license_plate,
         version: this.version,
-        user_id: this.userId,
-      })
-      this.msg = "Veículo cadastrado com sucesso!"
+      }).then(() => window.location.href = '/vehicles')
+        .catch(({ response }) => {
+          this.msg = response.data.message;
+          this.error = true;
+        })
+        .finally(() => this.loadingUpdate = false)
     }
   },
   mounted() {

@@ -1,6 +1,8 @@
 <template>
-  <div class="message-container">
-    <p id="message-word">{{ msg }}</p>
+  <div class="row justify-content-center">
+    <div :class="error ? 'alert alert-danger w-50' : 'message-container'">
+      <p class="text-center justify-content-center" id="message-word">{{ msg }}</p>
+    </div>
   </div>
 </template>
 
@@ -10,7 +12,8 @@ export default {
   name: "Message",
 
   props: {
-    msg: String
+    msg: String,
+    error: Boolean,
   }
 }
 

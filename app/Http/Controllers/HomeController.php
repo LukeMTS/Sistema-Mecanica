@@ -24,6 +24,8 @@ class HomeController extends Controller
         $maintenances = Maintenance::with('vehicle')
             ->selectRaw("*, DATEDIFF(deadline, CURDATE()) days")
             ->whereRaw('DATEDIFF(deadline, CURDATE()) <= 7')
+            ->where('status_id', 1)
+            ->orderBy('days')
             ->get();
 
         return response()->json(['data' => $maintenances]);

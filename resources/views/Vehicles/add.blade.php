@@ -4,5 +4,5 @@ Registro
 @endsection
 
 @section('content')
-<add-vehicle user-id="{{ Auth::user()->id }}" />
+<add-vehicle />
 @endsection

@@ -26,11 +26,24 @@ class CreateVehicleRequest extends FormRequest
   public function rules()
   {
     return [
-      'user_id' => 'required',
       'model' => 'required|max:100',
       'brand' => 'required|max:100',
       'license_plate' => 'required|max:7',
-      'version' => 'required|max:6',
+      'version' => 'required|numeric',
+    ];
+  }
+
+  public function messages()
+  {
+    return [
+      'version.numeric' => 'A versão deve ser um valor numérico',
+      'model.required' => 'Necessita de um modelo',
+      'brand.required' => 'Necessita de uma marca',
+      'license_plate.required' => 'Necessita de uma placa',
+      'version.required' => 'Necessita de uma versão',
+      'model.max' => 'Permitido no máximo 100 caracteres',
+      'brand.max' => 'Permitido no máximo 100 caracteres',
+      'license_plate.max' => 'Permitido no máximo 7 caracteres',
     ];
   }
 }

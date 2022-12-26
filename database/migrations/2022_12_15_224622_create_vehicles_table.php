@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('license_plate', 7);
             $table->decimal('version', 4, 1);
             $table->timestamps();
-            $table->softDeletes();
         });
 
         Schema::table('vehicles', function (Blueprint $table) {

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Auth::routes();
@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit/vehicle/{id}', [VehicleController::class, 'edit']);
 
     Route::get('/register/maintenance', [MaintenanceController::class, 'add']);
-    Route::get('/maintenance', [MaintenanceController::class, 'index']);
+    Route::get('/maintenances', [MaintenanceController::class, 'index']);
     Route::get('/edit/maintenance/{id}', [MaintenanceController::class, 'edit']);
 
     Route::get('/home', [HomeController::class, 'index']);

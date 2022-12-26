@@ -1,13 +1,9 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\VehicleController;
-use App\Models\Maintenance;
-use Illuminate\Database\Console\Migrations\StatusCommand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,23 +40,24 @@ Route::middleware('api')
     ->prefix('cars')
     ->controller(VehicleController::class)
     ->group(function () {
-        Route::get('users/{vehicleId}', 'getAll');
+        Route::get('', 'getAll');
         Route::post('', 'store');
         Route::delete('{id}', 'destroy');
         Route::get('{id}', 'getCar');
         Route::put('{id}', 'update');
-        Route::get('user/{userId}', 'getCarsByUserId');
+        // Route::get('user/{userId}', 'getCarsByUserId');
     });
 
 Route::middleware('api')
     ->prefix('maintenances')
     ->controller(MaintenanceController::class)
     ->group(function () {
-        Route::get('users/{userId}', 'getAll');
+        Route::get('', 'getAll');
         Route::post('', 'store');
         Route::delete('{id}', 'destroy');
         Route::get('{id}', 'getMaintenance');
         Route::put('{id}', 'update');
+        Route::patch('{id}', 'changeStatus');
     });
 
 Route::middleware('api')

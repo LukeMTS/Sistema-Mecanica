@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Mecânica') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -47,7 +47,7 @@
 
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Cadastrar') }}</a>
                         </li>
                         @endif
                         @else
@@ -72,12 +72,12 @@
                             Veículos
                         </a>
                         </li>
-                        <a id="navbarDropdown" class="nav-link" href="{{ url('/maintenance') }}">
+                        <a id="navbarDropdown" class="nav-link" href="{{ url('/maintenances') }}">
                             Manutenções
                         </a>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link" href="{{ url('/home') }}" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Home
+                                Dashboard
                             </a>
                         </li>
                         @endauth

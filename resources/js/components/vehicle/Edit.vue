@@ -1,8 +1,12 @@
 <template>
   <div>
-    <Message :msg="msg" v-show="msg" />
+    <Message :msg="msg" :error="error" v-show="msg" />
     <div>
-      <form id="edit-car" @submit="onSubmit">
+      <div v-if="loading" class="d-flex justify-content-center">
+        <div class="big spinner-border text-info" role="status">
+        </div>
+      </div>
+      <form v-else id="edit-car" @submit="onSubmit">
         <div class="input-container">
           <label for="title">Modelo:</label>
           <input type="text" name="model" id="model" v-model="model" required
@@ -24,7 +28,10 @@
             placeholder="Digite a versão do seu carro:">
         </div>
         <div class="input-container">
-          <input type="submit" class="submit-btn" value="Atualizar informações" />
+          <button type="submit" :disabled="loadingUpdate" class="submit-btn w-100">
+            <span v-if="loadingUpdate" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Atualizar informações
+          </button>
         </div>
       </form>
     </div>
@@ -38,10 +45,14 @@ export default {
   name: 'Edit',
   data() {
     return {
+      api_url: import.meta.env.VITE_APP_API_URL,
+      loading: true,
+      loadingUpdate: false,
       model: null,
       brand: null,
       license_plate: null,
       version: null,
+      error: false,
       msg: null,
     }
   },
@@ -51,24 +62,33 @@ export default {
   },
   methods: {
     getCar() {
-      axios.get(`http://127.0.0.1:8000/api/cars/${this.carId}`).then(({ data }) => {
+      this.loading = true;
+
+      axios.get(`${this.api_url}/cars/${this.carId}`).then(({ data }) => {
         this.model = data.data.model;
         this.brand = data.data.brand;
         this.license_plate = data.data.license_plate;
         this.version = data.data.version;
-      })
+      }).finally(() => this.loading = false)
     },
     onSubmit(e) {
-      e.preventDefault()
-      axios.put(`http://127.0.0.1:8000/api/cars/${this.carId}`, {
+      e.preventDefault();
+      this.loadingUpdate = true;
+
+      axios.put(`${this.api_url}/cars/${this.carId}`, {
         model: this.model,
         brand: this.brand,
         license_plate: this.license_plate,
         version: this.version
-
-      }).then(() => {
-        this.msg = "Informações atualizadas!"
       })
+        .then(() => {
+          window.location.href = '/vehicles'
+        })
+        .catch(({ response }) => {
+          this.msg = response.data.message;
+          this.error = true;
+        })
+        .finally(() => this.loadingUpdate = false)
     }
   },
   components: {
@@ -119,5 +139,10 @@ select {
 .submit-btn:hover {
   background-color: transparent;
   color: #222;
+}
+
+.big.spinner-border {
+  width: 4rem;
+  height: 4rem;
 }
 </style>

@@ -5,5 +5,5 @@ Manutenções
 @endsection
 
 @section('content')
-<home-maintenance user-id="{{ Auth::user()->id }}" />
+<home-maintenance message="{{ session('message') }}" />
 @endsection

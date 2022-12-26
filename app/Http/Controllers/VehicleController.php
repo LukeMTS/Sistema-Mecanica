@@ -7,6 +7,8 @@ use App\Http\Requests\Vehicle\UpdateVehicleRequest;
 use App\Models\Vehicle;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class VehicleController extends Controller
 {
@@ -15,9 +17,10 @@ class VehicleController extends Controller
         return view('vehicles.home');
     }
 
-    public function getAll($userId): JsonResponse
+    public function getAll(): JsonResponse
     {
-        $vehicles = Vehicle::where('user_id', $userId)->get();
+        $vehicles = Vehicle::where('user_id', auth()->user()->id)
+            ->orderByDesc('id')->get();
 
         return response()->json(['data' => $vehicles]);
     }
@@ -31,13 +34,15 @@ class VehicleController extends Controller
     {
         $vehicle = new Vehicle();
 
-        $vehicle->user_id       = $request->user_id;
+        $vehicle->user_id       = auth()->user()->id;
         $vehicle->model         = $request->model;
         $vehicle->brand         = $request->brand;
         $vehicle->license_plate = $request->license_plate;
         $vehicle->version       = $request->version;
 
         $vehicle->save();
+
+        Session::flash('message', 'Veículo criado com sucesso.');
 
         return response()->noContent();
     }
@@ -66,6 +71,8 @@ class VehicleController extends Controller
         $vehicle->version       = $request->version;
 
         $vehicle->save();
+
+        Session::flash('message', 'Veículo atualizado com sucesso.');
 
         return response()->noContent();
     }

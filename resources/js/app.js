@@ -4,54 +4,60 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import './bootstrap';
-import { createApp } from 'vue';
-
-/**
- * Next, we will create a fresh Vue application instance. You may then begin
- * registering components with the application instance so they are ready
- * to use in your application's views. An example is included for you.
- */
-
-const app = createApp({});
-
-//Vehicle
-import HomeVehicle from './components/vehicle/Home.vue';
-import AddVehicle from './components/vehicle/Add.vue';
-import EditVehicle from './components/vehicle/Edit.vue';
-//Maintenance
-import HomeMaintenance from './components/maintenance/Home.vue';
-import AddMaintenance from './components/maintenance/Add.vue';
-import EditMaintenance from './components/maintenance/Edit.vue';
-//Dashboard
-import Dashboard from './components/Dashboard.vue'
-
-app.component('home-vehicle', HomeVehicle);
-app.component('add-vehicle', AddVehicle);
-app.component('edit-vehicle', EditVehicle);
-
-app.component('home-maintenance', HomeMaintenance)
-app.component('add-maintenance', AddMaintenance)
-app.component('edit-maintenance', EditMaintenance)
-
-app.component('dashboard', Dashboard)
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
-//     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
-// });
-
-/**
- * Finally, we will attach the application instance to a HTML element with
- * an "id" attribute of "app". This element is included with the "auth"
- * scaffolding. Otherwise, you will need to add an element yourself.
- */
-
-app.mount('#app');
+ import './bootstrap';
+ import { createApp } from 'vue';
+ 
+ /**
+  * Next, we will create a fresh Vue application instance. You may then begin
+  * registering components with the application instance so they are ready
+  * to use in your application's views. An example is included for you.
+  */
+ 
+ const app = createApp({});
+ 
+ // axios.get('/sanctum').then(response => {
+ //     console.log(sanctum);
+ // });
+ 
+ //Vehicle
+ import HomeVehicle from './components/vehicle/Home.vue';
+ import AddVehicle from './components/vehicle/Add.vue';
+ import EditVehicle from './components/vehicle/Edit.vue';
+ //Maintenance
+ import HomeMaintenance from './components/maintenance/Home.vue';
+ import AddMaintenance from './components/maintenance/Add.vue';
+ import EditMaintenance from './components/maintenance/Edit.vue';
+ //Dashboard
+ import Dashboard from './components/Dashboard.vue'
+ 
+ app.component('home-vehicle', HomeVehicle);
+ app.component('add-vehicle', AddVehicle);
+ app.component('edit-vehicle', EditVehicle);
+ 
+ app.component('home-maintenance', HomeMaintenance)
+ app.component('add-maintenance', AddMaintenance)
+ app.component('edit-maintenance', EditMaintenance)
+ 
+ app.component('dashboard', Dashboard)
+ 
+ 
+ /**
+  * The following block of code may be used to automatically register your
+  * Vue components. It will recursively scan this directory for the Vue
+  * components and automatically register them with their "basename".
+  *
+  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+  */
+ 
+ // Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
+ //     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
+ // });
+ 
+ /**
+  * Finally, we will attach the application instance to a HTML element with
+  * an "id" attribute of "app". This element is included with the "auth"
+  * scaffolding. Otherwise, you will need to add an element yourself.
+  */
+ 
+ app.mount('#app');
+ 
