@@ -16,10 +16,11 @@ O npm e Vite foram utilizados para o VueJs, então este guia será baseado neles
 
 3. Agora é necessário ajeitar uma configuração do nginx:
     - cd /etc/nginx/conf.d/
-    - cd /etc/nginx/conf.d/
+    - nano default.conf
 
     Na linha que diz: 
         try_files $uri $uri/ /index.php?$query_string $uri/index.html;
+
     Alterar para:
         try_files $uri $uri/ /index.php?$query_string;
 
@@ -35,5 +36,4 @@ O npm e Vite foram utilizados para o VueJs, então este guia será baseado neles
 3. Acessar a página http://localhost:8080
 
 Alguns logins já foram criados na seed. Um deles é: 
-    mecanico1
-    senha123
+    mecanico1 / senha123
